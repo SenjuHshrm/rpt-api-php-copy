@@ -10,9 +10,9 @@ class TestCtrl extends Controller
 {
     public function testToken() {
         $res = new token();
-        $res->username = 'rg';
-        $res->name = 'Renzo L. Dimasapit';
-        $res->iat='1557452848';
+        $res->username = 'TestToken';
+        $res->name = 'TestToken';
+        $res->iat='TestToken';
         $alg = new alg();
         $alg->alg = 'HS256';
         $alg->typ='JWT';
