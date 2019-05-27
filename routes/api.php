@@ -25,4 +25,6 @@ Route::group(['middleware' => ['cors']], function() {
     Route::post('/login', 'LoginCtrl@login');
     Route::post('/register', 'RegisterCtrl@register');
     Route::get('/test', 'TestCtrl@testToken');
+    Route::post('/check-pin-land', 'CheckPINLand@check');
+    Route::post('/search-faas-record', 'SearchRecord@search');
 });

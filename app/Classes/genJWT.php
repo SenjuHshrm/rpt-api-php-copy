@@ -33,4 +33,22 @@ class genJWT {
         return hash_hmac('sha256', $payload, env('JWT_SECRET'));
     }
 
+    public function authToken($token) {
+        try {
+            if(strlen($token) == 0) {
+                return false;
+            } else {
+                $info = explode('.', $token);
+                $usercred = $info[1];
+                if(imap_base64($usercred) === false){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
 }
