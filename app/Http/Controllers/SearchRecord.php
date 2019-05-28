@@ -32,26 +32,56 @@ class SearchRecord extends Controller
     private function searchLand(Request $request) {
         switch($request['SearchBy']){
             case 'pin':
-                $q = "CALL searchLandByPIN('".$request['info']."')";
-                $dbres = DB::select($q);
-                $data = $dbres[0];
-                $owner = DB::select("CALL get_land_faas_owners(".$data->land_faas_id.")");
-                $admin = DB::select("CALL get_land_faas_administrators(".$data->land_faas_id.")");
-                $strips = DB::select("CALL get_land_faas_strips(".$data->land_faas_id.")");
+                $q = $this->searchLandByPIN($request['info']);
+                $owner = $this->getLandOwner($q);
+                $admin = $this->getAdmin($q);
                 return [
-                    'landfaas' => $data,
+                    'landfaas' => $q,
                     'owner' => $owner,
                     'admin' => $admin,
-                    'strips' => $strips
                 ];
                 break;
             case 'arpNo':
 
                 break;
             case 'name':
-
+                $data = $this->searchLandByName($request['info']);
+                $owner = $this->getLandOwner($data);
+                $admin = $this->getAdmin($data);
+                return [
+                    'landfaas' => $data,
+                    'owner' => $owner,
+                    'admin' => $admin,
+                ];
                 break;
         }
+    }
+
+    public function getLandOwner($qr) {
+        $res = array();
+        for($x = 0; $x < count($qr); $x++) {
+            $q = DB::select("CALL get_land_faas_owners(".$qr[$x]->id.")");
+            array_push($res, $q);
+        }
+        return $res;
+    }
+
+    public function getAdmin($qr) {
+        $res = array();
+        for($x = 0; $x < count($qr); $x++) {
+            $q = DB::select("CALL get_land_faas_administrators(".$qr[$x]->id.")");
+            array_push($res, $q);
+        }
+        return $res;
+    }
+
+    public function searchLandByPIN($id) {
+        return DB::select("CALL search_land_faas('".$id."', 'PIN', 'LAND TAX')");
+    }
+
+    public function searchLandByName($id) {
+        $res = DB::select("CALL search_land_faas('".$id."', 'NAME', 'LAND TAX')");
+        return $res;
     }
 
     private function searchBldg(Request $request) {
