@@ -36,7 +36,7 @@ class SearchRecord extends Controller
                 $owner = $this->getLandOwner($q);
                 $admin = $this->getAdmin($q);
                 return [
-                    'landfaas' => $q,
+                    'faas' => $q,
                     'owner' => $owner,
                     'admin' => $admin,
                 ];
@@ -49,7 +49,7 @@ class SearchRecord extends Controller
                 $owner = $this->getLandOwner($data);
                 $admin = $this->getAdmin($data);
                 return [
-                    'landfaas' => $data,
+                    'faas' => $data,
                     'owner' => $owner,
                     'admin' => $admin,
                 ];
