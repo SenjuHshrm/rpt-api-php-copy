@@ -28,5 +28,5 @@ Route::group(['middleware' => ['cors']], function() {
     Route::post('/check-pin-land', 'CheckPINLand@check');
     Route::post('/search-faas-record', 'SearchRecord@search');
     Route::get('/land-tax/position-holders', 'LandTaxPosHolders@getHolders');
-
+    Route::post('/save/file/clearance', 'SaveClearance@save');
 });

@@ -42,7 +42,14 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'arpNo':
-
+                $q = $this->searchLandByARP($request['info']);
+                $owner = $this->getLandOwner($q);
+                $admin = $this->getAdmin($q);
+                return [
+                    'faas' => $q,
+                    'owner' => $owner,
+                    'admin' => $admin,
+                ];
                 break;
             case 'name':
                 $data = $this->searchLandByName($request['info']);
@@ -77,6 +84,10 @@ class SearchRecord extends Controller
 
     public function searchLandByPIN($id) {
         return DB::select("CALL search_land_faas('".$id."', 'PIN', 'LAND TAX')");
+    }
+
+    public function searchLandByARP($id) {
+        return DB::select("CALL search_land_faas('".$id."', 'ARP_NO', 'LAND TAX')");
     }
 
     public function searchLandByName($id) {
