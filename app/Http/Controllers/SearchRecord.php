@@ -32,7 +32,7 @@ class SearchRecord extends Controller
     private function searchLand(Request $request) {
         switch($request['SearchBy']){
             case 'pin':
-                $q = $this->searchLandByPIN($request['info']);
+                $q = $this->searchLandByPIN($request['info'], $request['sysCaller']);
                 $owner = $this->getLandOwner($q);
                 $admin = $this->getAdmin($q);
                 return [
@@ -42,7 +42,7 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'arpNo':
-                $q = $this->searchLandByARP($request['info']);
+                $q = $this->searchLandByARP($request['info'], $request['sysCaller']);
                 $owner = $this->getLandOwner($q);
                 $admin = $this->getAdmin($q);
                 return [
@@ -52,7 +52,7 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'name':
-                $data = $this->searchLandByName($request['info']);
+                $data = $this->searchLandByName($request['info'], $request['sysCaller']);
                 $owner = $this->getLandOwner($data);
                 $admin = $this->getAdmin($data);
                 return [
@@ -82,16 +82,16 @@ class SearchRecord extends Controller
         return $res;
     }
 
-    public function searchLandByPIN($id) {
-        return DB::select("CALL search_land_faas('".$id."', 'PIN', 'LAND TAX')");
+    public function searchLandByPIN($id, $sysCaller) {
+        return DB::select("CALL search_land_faas('".$id."', 'PIN', '".$sysCaller."')");
     }
 
-    public function searchLandByARP($id) {
-        return DB::select("CALL search_land_faas('".$id."', 'ARP_NO', 'LAND TAX')");
+    public function searchLandByARP($id, $sysCaller) {
+        return DB::select("CALL search_land_faas('".$id."', 'ARP_NO', '".$sysCaller."')");
     }
 
-    public function searchLandByName($id) {
-        $res = DB::select("CALL search_land_faas('".$id."', 'NAME', 'LAND TAX')");
+    public function searchLandByName($id, $sysCaller) {
+        $res = DB::select("CALL search_land_faas('".$id."', 'NAME', '".$sysCaller."')");
         return $res;
     }
 

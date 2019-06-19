@@ -10,7 +10,7 @@ class CheckPINLand extends Controller
 {
     public function check(Request $request) {
         $header = $request->header('Authorization');
-        $q = "CALL check_pin_availability_land_faas('".$request['city']."','".$request['dist']."','".$request['brgy']."','".$request['sect']."','".$request['prcl']."')";
+        $q = "CALL check_if_exists_land_faas('".$request['city']."-".$request['dist']."-".$request['brgy']."-".$request['sect']."-".$request['prcl']."')";
         $result = DB::select($q);
         $proc = new genJWT();
         $res = $proc->authToken(str_replace('Bearer ', '', $header));
