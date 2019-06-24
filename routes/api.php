@@ -30,5 +30,6 @@ Route::group(['middleware' => ['cors']], function() {
     Route::get('/land-tax/position-holders', 'LandTaxPosHolders@getHolders');
     Route::post('/save/file/clearance', 'SaveClearance@save');
     Route::post('/get-file/land-tax', 'GetClearance@getFile');
-    Route::post('/get-land-faas', 'GetLandFaas@getInfo');
+    Route::post('/get-faas', 'GetLandFaas@getInfo');
+    Route::post('/get-data-taxdec', 'GetDataTaxDec@getData');
 });
