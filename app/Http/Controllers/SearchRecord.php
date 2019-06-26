@@ -19,7 +19,10 @@ class SearchRecord extends Controller
                     'data' => $this->searchLand($request)
                 ]);
             } else {
-                $this->searchBldg($request);
+                return json_encode([
+                    'success' => true,
+                    'data' => $this->searchBldg($request)
+                ]);
             }
         } else {
             return json_encode([
@@ -84,11 +87,20 @@ class SearchRecord extends Controller
 
     private function getBldgOwner($qr) {
         $res = array();
-        
+        for($x = 0; $x < count($qr); $x++) {
+            $q = DB::select("CALL get_building_faas_owners(".$qr[$x]->id.")");
+            array_push($res, $q);
+        }
+        return $res;
     }
 
     private function getAdminBldg($qr) {
-
+        $res = array();
+        for($x = 0; $x < count($qr); $x++) {
+            $q = DB::select("CALL get_building_faas_administrators(".$qr[$x]->id.")");
+            array_push($res, $q);
+        }
+        return $res;
     }
 
     public function searchLandByPIN($id, $sysCaller) {
@@ -108,8 +120,8 @@ class SearchRecord extends Controller
         switch($request['SearchBy']){
             case 'pin':
                 $q = $this->searchBldgByPIN($request['info'], $request['sysCaller']);
-                $owner = '';
-                $admin = '';
+                $owner = $this->getBldgOwner($q);
+                $admin = $this->getAdminBldg($q);
                 return [
                     'faas' => $q,
                     'owner' => $owner,
@@ -117,10 +129,24 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'arpNo':
-
+                $q = $this->searchBldgByPIN($request['info'], $request['sysCaller']);
+                $owner = $this->getBldgOwner($q);
+                $admin = $this->getAdminBldg($q);
+                return [
+                    'faas' => $q,
+                    'owner' => $owner,
+                    'admin' => $admin
+                ];
                 break;
             case 'name':
-
+                $data = $this->searchBldgByName($request['info'], $request['sysCaller']);
+                $owner = $this->getBldgOwner($data);
+                $admin = $this->getAdminBldg($data);
+                return [
+                    'faas' => $data,
+                    'owner' => $owner,
+                    'admin' => $admin,
+                ];
                 break;
         }
     }
