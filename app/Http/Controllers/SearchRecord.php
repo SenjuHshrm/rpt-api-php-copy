@@ -82,6 +82,15 @@ class SearchRecord extends Controller
         return $res;
     }
 
+    private function getBldgOwner($qr) {
+        $res = array();
+        
+    }
+
+    private function getAdminBldg($qr) {
+
+    }
+
     public function searchLandByPIN($id, $sysCaller) {
         return DB::select("CALL search_land_faas('".$id."', 'PIN', '".$sysCaller."')");
     }
@@ -96,6 +105,35 @@ class SearchRecord extends Controller
     }
 
     private function searchBldg(Request $request) {
+        switch($request['SearchBy']){
+            case 'pin':
+                $q = $this->searchBldgByPIN($request['info'], $request['sysCaller']);
+                $owner = '';
+                $admin = '';
+                return [
+                    'faas' => $q,
+                    'owner' => $owner,
+                    'admin' => $admin
+                ];
+                break;
+            case 'arpNo':
 
+                break;
+            case 'name':
+
+                break;
+        }
+    }
+
+    private function searchBldgByPIN($id, $sysCaller) {
+        return DB::select("CALL search_building_faas('".$id."', 'PIN', '".$sysCaller."')");
+    }
+
+    private function searchBldgByARP($id, $sysCaller) {
+        return DB::select("CALL search_building_faas('".$id."', 'ARP_NO', '".$sysCaller."')");
+    }
+
+    private function searchBldgByName($id, $sysCaller) {
+        return DB::select("CALL search_building_faas('".$id."', 'NAME', '".$sysCaller."')");
     }
 }
