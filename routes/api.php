@@ -33,4 +33,5 @@ Route::group(['middleware' => ['cors']], function() {
     Route::post('/get-faas/land', 'GetLandFaas@getInfo');
     Route::post('/get-faas/bldg', 'GetBldgFaas@getInfo');
     Route::post('/get-data-taxdec', 'GetDataTaxDec@getData');
+    Route::post('/segregation/get-data', 'SegregationCtrl@searchRecord');
 });
