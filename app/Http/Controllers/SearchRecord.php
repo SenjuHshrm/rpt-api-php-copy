@@ -12,23 +12,34 @@ class SearchRecord extends Controller
         $header = $request->header('Authorization');
         $proc = new genJWT();
         $tokenRes = $proc->authToken(str_replace('Bearer ', '', $header));
-        if($tokenRes) {
-            if($request['SearchIn'] == 'land') {
-                return json_encode([
-                    'success' => true,
-                    'data' => $this->searchLand($request)
-                ]);
+        if($header) {
+            if ($tokenRes) {
+                if ($request['SearchIn'] == 'land') {
+                    return [
+                        'success' => true,
+                        'err' => null,
+                        'data' => $this->searchLand($request)
+                    ];
+                } else {
+                    return [
+                        'success' => true,
+                        'err' => null,
+                        'data' => $this->searchBldg($request)
+                    ];
+                }
             } else {
-                return json_encode([
-                    'success' => true,
-                    'data' => $this->searchBldg($request)
-                ]);
+                return [
+                'success' => false,
+                'err' => 'Invalid Token',
+                'data' => null
+                ];
             }
         } else {
-            return json_encode([
-                'success' => 'error',
-                'res' => 'Invalid User'
-            ]);
+            return [
+                'success' => false,
+                'err' => 'Unauthorized',
+                'data' => null
+            ];
         }
     }
 
