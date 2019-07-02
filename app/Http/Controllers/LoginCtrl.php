@@ -32,10 +32,9 @@ class LoginCtrl extends Controller
             }
         } else {
             $resobj->success = false;
-            $resobj->status = 'No Username';
+            $resobj->status = 'Username not registered';
             $resobj->token = null;
             return json_encode($resobj);
         }
     }
 }
-  

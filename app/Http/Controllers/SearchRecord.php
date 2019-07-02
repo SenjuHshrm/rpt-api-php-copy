@@ -140,7 +140,7 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'arpNo':
-                $q = $this->searchBldgByPIN($request['info'], $request['sysCaller']);
+                $q = $this->searchBldgByARP($request['info'], $request['sysCaller']);
                 $owner = $this->getBldgOwner($q);
                 $admin = $this->getAdminBldg($q);
                 return [
