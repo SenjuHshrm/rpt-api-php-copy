@@ -34,4 +34,7 @@ Route::group(['middleware' => ['cors']], function() {
     Route::post('/get-faas/bldg', 'GetBldgFaas@getInfo');
     Route::post('/get-data-taxdec', 'GetDataTaxDec@getData');
     Route::post('/segregation/get-data', 'SegregationCtrl@searchRecord');
+		Route::post('/pending/segregation', 'GetPendingTrns@getPendingSegregation');
+		Route::post('/pending/consolidation', 'GetPendingTrns@getPendingConsolidation');
+		Route::post('/pending/subdivision', 'GetPendingTrns@getPendingSubdivision');
 });
