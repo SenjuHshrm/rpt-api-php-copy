@@ -11,7 +11,11 @@ class GetLandFaas extends Controller
         $res = DB::select("CALL get_land_faas(".$request['id'].")");
         $obj = $res[0];
         $obj->encoder_id = $this->getEncoder($obj->encoder_id);
-        return json_encode($obj);
+        return json_encode([
+					'faas' => $obj,
+					'owners' => DB::select("CALL get_land_faas_owners(".$request['id'].")"),
+					'admins' => DB::select("CALL get_land_faas_administrators(".$request['id'].")")
+				]);
     }
 
     private function getEncoder($id) {
