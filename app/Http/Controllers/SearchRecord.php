@@ -4,43 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Classes\genJWT;
+use App\Http\Controllers\CheckRequestAuth;
 
 class SearchRecord extends Controller
 {
     public function search(Request $request) {
         $header = $request->header('Authorization');
-        $proc = new genJWT();
-        $tokenRes = $proc->authToken(str_replace('Bearer ', '', $header));
-        if($header) {
-            if ($tokenRes) {
-                if ($request['SearchIn'] == 'land') {
-                    return [
-                        'success' => true,
-                        'err' => null,
-                        'data' => $this->searchLand($request)
-                    ];
-                } else {
-                    return [
-                        'success' => true,
-                        'err' => null,
-                        'data' => $this->searchBldg($request)
-                    ];
-                }
-            } else {
-                return [
-                'success' => false,
-                'err' => 'Invalid Token',
-                'data' => null
-                ];
-            }
-        } else {
-            return [
-                'success' => false,
-                'err' => 'Unauthorized',
-                'data' => null
-            ];
-        }
+				$test = new CheckRequestAuth();
+				if($test->testToken($header)) {
+					if ($request['SearchIn'] == 'land') {
+						return [
+							'success' => true,
+							'err' => null,
+							'data' => $this->searchLand($request)
+						];
+					} else {
+						return [
+							'success' => true,
+							'err' => null,
+							'data' => $this->searchBldg($request)
+						];
+					}
+				} else {
+					return [
+						'success' => false,
+						'err' => 'Invalid Token',
+						'data' => null
+					];
+				}
+
     }
 
     private function searchLand(Request $request) {

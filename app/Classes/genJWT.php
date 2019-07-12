@@ -38,9 +38,10 @@ class genJWT {
             return false;
         } else {
             $info = explode('.', $token);
-            if (isset($info[1])) {
+            if (isset($info[0]) && isset($info[1])) {
+								$alg = $info[0];
                 $usercred = $info[1];
-                if (imap_base64($usercred) === false) {
+                if (!base64_decode($alg, true)) {
                     return false;
                 } else {
                     return true;
