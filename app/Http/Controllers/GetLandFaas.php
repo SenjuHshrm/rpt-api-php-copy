@@ -14,7 +14,9 @@ class GetLandFaas extends Controller
         return json_encode([
 					'faas' => $obj,
 					'owners' => DB::select("CALL get_land_faas_owners(".$request['id'].")"),
-					'admins' => DB::select("CALL get_land_faas_administrators(".$request['id'].")")
+					'admins' => DB::select("CALL get_land_faas_administrators(".$request['id'].")"),
+					'strips' => DB::select("CALL get_land_faas_strips(".$request['id'].")"),
+					'marketval' => DB::select("CALL get_land_faas_adjustment_factors(".$request['id'].")")
 				]);
     }
 
