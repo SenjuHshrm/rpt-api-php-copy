@@ -8,21 +8,21 @@ use App\Http\Controllers\CheckRequestAuth;
 
 class SearchRecord extends Controller
 {
-    public function search(Request $request) {
+    public function search($sysCaller, $searchIn, $searchBy, $info, Request $request) {
         $header = $request->header('Authorization');
 				$test = new CheckRequestAuth();
 				if($test->testToken($header)) {
-					if ($request['SearchIn'] == 'land') {
+					if ($searchIn == 'land') {
 						return [
 							'success' => true,
 							'err' => null,
-							'data' => $this->searchLand($request)
+							'data' => $this->searchLand($searchBy, $info, $sysCaller)
 						];
 					} else {
 						return [
 							'success' => true,
 							'err' => null,
-							'data' => $this->searchBldg($request)
+							'data' => $this->searchBldg($searchBy, $info, $sysCaller)
 						];
 					}
 				} else {
@@ -35,10 +35,10 @@ class SearchRecord extends Controller
 
     }
 
-    private function searchLand(Request $request) {
-        switch($request['SearchBy']){
+    private function searchLand($searchBy, $info, $sysCaller) {
+        switch($searchBy){
             case 'pin':
-                $q = $this->searchLandByPIN($request['info'], $request['sysCaller']);
+                $q = $this->searchLandByPIN($info, $sysCaller);
                 $owner = $this->getLandOwner($q);
                 $admin = $this->getAdmin($q);
                 return [
@@ -48,7 +48,7 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'arpNo':
-                $q = $this->searchLandByARP($request['info'], $request['sysCaller']);
+                $q = $this->searchLandByARP($info, $sysCaller);
                 $owner = $this->getLandOwner($q);
                 $admin = $this->getAdmin($q);
                 return [
@@ -58,7 +58,7 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'name':
-                $data = $this->searchLandByName($request['info'], $request['sysCaller']);
+                $data = $this->searchLandByName($info, $sysCaller);
                 $owner = $this->getLandOwner($data);
                 $admin = $this->getAdmin($data);
                 return [
@@ -119,10 +119,10 @@ class SearchRecord extends Controller
         return $res;
     }
 
-    private function searchBldg(Request $request) {
-        switch($request['SearchBy']){
+    private function searchBldg($searchBy, $info, $sysCaller) {
+        switch($searchBy){
             case 'pin':
-                $q = $this->searchBldgByPIN($request['info'], $request['sysCaller']);
+                $q = $this->searchBldgByPIN($info, $sysCaller);
                 $owner = $this->getBldgOwner($q);
                 $admin = $this->getAdminBldg($q);
                 return [
@@ -132,7 +132,7 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'arpNo':
-                $q = $this->searchBldgByARP($request['info'], $request['sysCaller']);
+                $q = $this->searchBldgByARP($info, $sysCaller);
                 $owner = $this->getBldgOwner($q);
                 $admin = $this->getAdminBldg($q);
                 return [
@@ -142,7 +142,7 @@ class SearchRecord extends Controller
                 ];
                 break;
             case 'name':
-                $data = $this->searchBldgByName($request['info'], $request['sysCaller']);
+                $data = $this->searchBldgByName($info, $sysCaller);
                 $owner = $this->getBldgOwner($data);
                 $admin = $this->getAdminBldg($data);
                 return [

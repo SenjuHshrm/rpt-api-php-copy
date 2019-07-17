@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CheckRequestAuth;
 
 class GetBldgFaas extends Controller
 {
-    public function getInfo(Request $req) {
-        $res = DB::select("CALL get_building_faas(".$req['id'].")");
-        $obj = $res[0];
-        $obj->encoder_id = $this->getEncoder($obj->encoder_id);
-        return json_encode($obj);
-
+    public function getInfo(Request $req, $id) {
+				$header = $req->header('Authorization');
+				$test = new CheckRequestAuth();
+				if($test->testToken($header)) {
+					$res = DB::select("CALL get_building_faas(".$id.")");
+	        $obj = $res[0];
+	        $obj->encoder_id = $this->getEncoder($obj->encoder_id);
+	        return json_encode($obj);
+				} else {
+					return json_encode([]);
+				}
     }
 
     private function getEncoder($id) {
