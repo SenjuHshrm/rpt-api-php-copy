@@ -10,6 +10,7 @@ class GetLandFaas extends Controller
 {
     public function getInfo(Request $request, $id) {
 				$test = new CheckRequestAuth();
+				$header = $request->header('Authorization');
 				if($test->testToken($header)) {
 					$res = DB::select("CALL get_land_faas(".$id.")");
 	        $obj = $res[0];
@@ -21,7 +22,6 @@ class GetLandFaas extends Controller
 						'strips' => DB::select("CALL get_land_faas_strips(".$id.")"),
 						'marketval' => DB::select("CALL get_land_faas_adjustment_factors(".$id.")")
 					]);
-					$header = $request->header('Authorization');
 				} else {
 					return json_encode([]);
 				}
