@@ -17,7 +17,11 @@ class LoginCtrl extends Controller
         if(count($q) == 1){
             $data = $q[0];
             if(Hash::check($request['password'], $data->password)) {
-                $name = $data->first_name . ' ' . substr($data->middle_name,0,1) . '. ' . $data->last_name;
+								if($data->middle_name == null) {
+									$name = $data->first_name . ' ' . $data->last_name;
+								} else {
+									$name = $data->first_name . ' ' . substr($data->middle_name,0,1) . '. ' . $data->last_name;
+								}
                 $resobj = new loginRes();
                 $jwtgen = new genJWT();
                 $resobj->success = true;
