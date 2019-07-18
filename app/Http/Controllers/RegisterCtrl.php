@@ -19,8 +19,13 @@ class RegisterCtrl extends Controller
         $data->addr = $req['address'];
         $data->cont = $req['contact'];
         try {
-            $qStr = "CALL add_user('".$data->username."','".$data->password."','".$data->fname."','".$data->mname."','".$data->lname."','".$data->addr."','".$data->cont."')";
-            DB::select($qStr);
+						$q = DB::select("CALL login('".$data->username."')");
+						if(count($q) > 0) {
+							return ['success' => false];
+						} else {
+							$qStr = "CALL add_user('".$data->username."','".$data->password."','".$data->fname."','".$data->mname."','".$data->lname."','".$data->addr."','".$data->cont."')";
+	            DB::select($qStr);
+						}
             return ['success' => true];
         } catch (Exception $e) {
             return ['success' => false];
