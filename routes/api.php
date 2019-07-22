@@ -32,7 +32,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::post('/get-data-taxdec', 'GetDataTaxDec@getData'); //get
     Route::get('/test', 'TestCtrl@testToken');
     Route::get('/search-faas-record/{sysCaller}/{searchIn}/{searchBy}/{info}', 'SearchRecord@search');
-    Route::get('/land-tax/position-holders', 'LandTaxPosHolders@getHolders');
+    Route::get('/position-holders/{sysCaller}', 'PosHolders@getHolders');
     Route::get('/get-faas/land/{id}', 'GetLandFaas@getInfo');
     Route::get('/get-faas/bldg/{id}', 'GetBldgFaas@getInfo');
     Route::get('/segregation/get-data/{sysCaller}/{searchBy}/{info}', 'SegregationCtrl@searchRecord');
