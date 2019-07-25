@@ -43,4 +43,8 @@ Route::group(['middleware' => ['cors']], function() {
 		// PUT requests
 		Route::put('/land-asmt/add', 'AssessLand@addLand');
 		Route::put('/land-asmt/update', 'AssessLand@updateLand');
+		Route::put('/bldg-asmt/add', 'AssessBldg@addBldg');
+		Route::put('/bldg-asmt/update', 'AssessBldg@updateBldg');
+		Route::put('/land-reasmt/reassess', 'ReassessmentCtrl@reassessLand');
+		Route::put('/bldg-reasmt/reassess', 'ReassessmentCtrl@reassessBldg');
 });
