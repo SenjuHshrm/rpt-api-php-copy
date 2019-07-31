@@ -93,7 +93,7 @@ class AssessLand extends Controller
 		private function addImp($imps, $id) {
 			if(count($imps) > 0) {
 				foreach($imps as $impLs) {
-
+					DB::select("CALL add_land_faas_improvements('".$impLs['kind']."', '".$impLs['totalNo']."', '".$impLs['unitVal']."', '".$impLs['baseMarkVal']."', '".$id."')");
 				}
 			}
 		}
@@ -101,7 +101,7 @@ class AssessLand extends Controller
 		private function addAdjFct($adjFctrs, $id) {
 			if(count($adjFctrs) > 0) {
 				foreach($adjFctrs as $adjF) {
-
+					DB::select("CALL ad_land_faas_adjustment_factor('', '', '', '', '".$id."')");
 				}
 			}
 		}

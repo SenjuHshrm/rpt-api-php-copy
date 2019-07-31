@@ -40,6 +40,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::get('/pending/consolidation/{name}', 'GetPendingTrns@getPendingConsolidation');
 		Route::get('/pending/subdivision/{name}', 'GetPendingTrns@getPendingSubdivision');
 		Route::get('/land/market-values', 'GetMarketValues@getVal');
+		Route::get('/bldg/kinds', 'BldgValuesCtrl@getBldgKind');
 		// PUT requests
 		Route::put('/land-asmt/add', 'AssessLand@addLand');
 		Route::put('/land-asmt/update', 'AssessLand@updateLand');
