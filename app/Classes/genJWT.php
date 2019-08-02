@@ -4,6 +4,7 @@ namespace App\Classes;
 
 use App\Classes\token;
 use App\Classes\alg;
+use Illuminate\Support\Facades\DB;
 
 class genJWT {
 
@@ -37,19 +38,44 @@ class genJWT {
         if(strlen($token) == 0) {
             return false;
         } else {
-            $info = explode('.', $token);
-            if (isset($info[0]) && isset($info[1])) {
-								$alg = $info[0];
-                $usercred = $info[1];
-                if (!base64_decode($alg, true)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                return false;
-            }
+						if($this->countTokenParts($token)) {
+							return $this->testUser($token);
+						} else {
+							return false;
+						}
+
         }
     }
+
+		private function countTokenParts($token) {
+			$parts = explode('.', $token);
+
+			if(count($parts) !== 3) {
+				return false;
+			}
+
+			$parts = array_filter(array_map('trim', $parts));
+
+			if(count($parts) !== 3 || implode('.', $parts) !== $token) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		private function testUser($token) {
+			$arr = explode('.', $token);
+			$obj = json_decode(base64_decode($arr[1]));
+			if(isset($obj)) {
+				$res = DB::select("CALL login('".$obj->username."')");
+				if(count($res) > 0) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
 
 }

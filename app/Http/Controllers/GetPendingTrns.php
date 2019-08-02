@@ -14,7 +14,7 @@ class GetPendingTrns extends Controller
 			if($test->testToken($header)) {
 				return json_encode(DB::select("CALL get_pending_segregated_lands('".$name."')"));
 			} else {
-				return json_encode([]);
+				return json_encode([ 'res' => false ]);
 			}
 		}
 
@@ -24,7 +24,7 @@ class GetPendingTrns extends Controller
 			if($test->testToken($header)) {
 				return json_encode(DB::select("CALL get_pending_consolidated_lands('".$name."')"));
 			} else {
-				return json_encode([]);
+				return json_encode([ 'res' => false ]);
 			}
 		}
 
@@ -34,7 +34,7 @@ class GetPendingTrns extends Controller
 			if($test->testToken($header)) {
 				return json_encode(DB::select("CALL get_pending_subdivided_lands('".$name."')"));
 			} else {
-				return json_encode([]);
+				return json_encode([ 'res' => false ]);
 			}
 		}
 }
