@@ -1,4 +1,5 @@
 <?php
+namespace App\Classes\pdf\tcpdf;
 //============================================================+
 // File name   : tcpdf_autoconfig.php
 // Version     : 1.1.1

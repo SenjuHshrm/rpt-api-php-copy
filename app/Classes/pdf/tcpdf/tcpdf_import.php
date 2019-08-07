@@ -1,4 +1,5 @@
 <?php
+namespace App\Classes\pdf\tcpdf;
 //============================================================+
 // File name   : tcpdf_import.php
 // Version     : 1.0.001

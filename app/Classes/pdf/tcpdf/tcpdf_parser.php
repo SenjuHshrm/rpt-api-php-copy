@@ -1,4 +1,5 @@
 <?php
+namespace App\Classes\pdf\tcpdf;
 //============================================================+
 // File name   : tcpdf_parser.php
 // Version     : 1.0.16

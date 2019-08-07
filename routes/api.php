@@ -28,6 +28,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::post('/save/file/clearance', 'SaveClearance@save');
     Route::post('/get-file/land-tax', 'GetClearance@getFile');
 		Route::post('/check-pin-land', 'CheckPINLand@check');
+		Route::post('/set-ref-num', 'SetRefNum@set');
 		// GET requests
 		Route::post('/get-data-taxdec', 'GetDataTaxDec@getData'); //get
     Route::get('/test', 'TestCtrl@testToken');
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::get('/pending/subdivision/{name}', 'GetPendingTrns@getPendingSubdivision');
 		Route::get('/land/market-values', 'GetMarketValues@getVal');
 		Route::get('/bldg/kinds', 'BldgValuesCtrl@getBldgKind');
+		Route::get('/sample-pdf', 'LandFaasGenFile@genFile');
 		// PUT requests
 		Route::put('/land-asmt/add', 'AssessLand@addLand');
 		Route::put('/land-asmt/update', 'AssessLand@updateLand');

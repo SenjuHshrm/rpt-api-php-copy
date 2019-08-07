@@ -1,4 +1,5 @@
 <?php
+namespace App\Classes\pdf\tcpdf;
 //============================================================+
 // File name   : tcpdf.php
 // Version     : 6.2.26
@@ -109,16 +110,22 @@
 
 // TCPDF configuration
 require_once(dirname(__FILE__).'/tcpdf_autoconfig.php');
-// TCPDF static font methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_font_data.php');
-// TCPDF static font methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_fonts.php');
-// TCPDF static color methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_colors.php');
-// TCPDF static image methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_images.php');
-// TCPDF static methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_static.php');
+// // TCPDF static font methods and data
+// require_once(dirname(__FILE__).'/include/tcpdf_font_data.php');
+// // TCPDF static font methods and data
+// require_once(dirname(__FILE__).'/include/tcpdf_fonts.php');
+// // TCPDF static color methods and data
+// require_once(dirname(__FILE__).'/include/tcpdf_colors.php');
+// // TCPDF static image methods and data
+// require_once(dirname(__FILE__).'/include/tcpdf_images.php');
+// // TCPDF static methods and data
+// require_once(dirname(__FILE__).'/include/tcpdf_static.php');
+
+use App\Classes\pdf\tcpdf\included\TCPDF_STATIC;
+use App\Classes\pdf\tcpdf\included\TCPDF_FONT_DATA;
+use App\Classes\pdf\tcpdf\included\TCPDF_FONTS;
+use App\Classes\pdf\tcpdf\included\TCPDF_COLORS;
+use App\Classes\pdf\tcpdf\included\TCPDF_IMAGES;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

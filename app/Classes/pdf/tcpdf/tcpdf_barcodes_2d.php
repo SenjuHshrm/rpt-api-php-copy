@@ -1,4 +1,5 @@
 <?php
+namespace App\Classes\pdf\tcpdf;
 //============================================================+
 // File name   : tcpdf_barcodes_2d.php
 // Version     : 1.0.015
