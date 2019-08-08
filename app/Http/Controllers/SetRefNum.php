@@ -13,7 +13,7 @@ class SetRefNum extends Controller
 			$header = $req->header('Authorization');
 			$test = new CheckRequestAuth();
 			if($test->testToken($header)) {
-				$res = DB::select("CALL new_ref_entry('".$req['type']."', '".$req['fileName']."')");
+				$res = DB::select("CALL new_ref_entry('".$req['type']."', '".$req['reqIn']."', '".$req['reqId']."')");
 				$id = $res[0]->id;
 				$idLn = strlen($id);
 				$TRNum = 7 - $idLn;
