@@ -43,6 +43,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::get('/land/market-values', 'GetMarketValues@getVal');
 		Route::get('/bldg/kinds', 'BldgValuesCtrl@getBldgKind');
 		Route::get('/sample-pdf', 'LandFaasGenFile@genFile');
+		Route::get('/get-brgys-subd', 'BrgysSubd@get');
 		// PUT requests
 		Route::put('/land-asmt/add', 'AssessLand@addLand');
 		Route::put('/land-asmt/update', 'AssessLand@updateLand');
