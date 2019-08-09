@@ -29,8 +29,8 @@ Route::group(['middleware' => ['cors']], function() {
     Route::post('/get-file/land-tax', 'GetClearance@getFile');
 		Route::post('/check-pin-land', 'CheckPINLand@check');
 		Route::post('/set-ref-num', 'SetRefNum@set');
+		Route::post('/get-taxdec', 'GetTaxDec@getFile');
 		// GET requests
-		Route::post('/get-data-taxdec', 'GetDataTaxDec@getData'); //get
     Route::get('/test', 'TestCtrl@testToken');
     Route::get('/search-faas-record/{sysCaller}/{searchIn}/{searchBy}/{info}', 'SearchRecord@search');
     Route::get('/position-holders/{sysCaller}', 'PosHolders@getHolders');
@@ -42,7 +42,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::get('/pending/subdivision/{name}', 'GetPendingTrns@getPendingSubdivision');
 		Route::get('/land/market-values', 'GetMarketValues@getVal');
 		Route::get('/bldg/kinds', 'BldgValuesCtrl@getBldgKind');
-		Route::get('/sample-pdf', 'LandFaasGenFile@genFile');
+		Route::get('/sample-pdf', 'GetTaxDec@getFile');
 		Route::get('/get-brgys-subd', 'BrgysSubd@get');
 		// PUT requests
 		Route::put('/land-asmt/add', 'AssessLand@addLand');
