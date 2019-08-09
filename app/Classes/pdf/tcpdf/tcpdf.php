@@ -7725,12 +7725,12 @@ class TCPDF {
 			}
 			case 'E': {
 				// return PDF as base64 mime multi-part email attachment (RFC 2045)
-				$retval = 'Content-Type: application/pdf;'."\r\n";
-				$retval .= ' name="'.$name.'"'."\r\n";
-				$retval .= 'Content-Transfer-Encoding: base64'."\r\n";
-				$retval .= 'Content-Disposition: attachment;'."\r\n";
-				$retval .= ' filename="'.$name.'"'."\r\n\r\n";
-				$retval .= chunk_split(base64_encode($this->getBuffer()), 76, "\r\n");
+				// $retval = 'Content-Type: application/pdf;'."\r\n";
+				// $retval .= ' name="'.$name.'"'."\r\n";
+				// $retval .= 'Content-Transfer-Encoding: base64'."\r\n";
+				// $retval .= 'Content-Disposition: attachment;'."\r\n";
+				// $retval .= ' filename="'.$name.'"'."\r\n\r\n";
+				$retval = chunk_split(base64_encode($this->getBuffer()), 76, "\r\n");
 				return $retval;
 			}
 			case 'S': {

@@ -6,27 +6,33 @@ use Illuminate\Http\Request;
 use App\Classes\pdf\tcpdf\TCPDF;
 use App\Classes\pdf\tcpdi\TCPDI;
 
-class LandFaasGenFile extends Controller
-{
-
-
+class LandFaasGenFile extends Controller {
+	
     public function genFile(Request $request) {
-			//require_once(base_path()."\\app\\Classes\pdf\\tcpdf\\tcpdf.php");
-			// require_once base_path()."\\pdf\\tcpdi\\tcpdi.php";
-			// $pdf =new TCPDI();
-			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-			$pdf->SetCreator(PDF_CREATOR);
-			$pdf->SetTitle('Sample PDF');
+			$pdf = new TCPDI(PDF_PAGE_ORIENTATION, 'mm', PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf->SetDisplayMode(100);
+			$count = $pdf->setSourceFile(base_path().'\resources\assets\pdf\land_faas_template.pdf');
 			$pdf->setPrintHeader(false);
 			$pdf->setPrintFooter(false);
-			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-			$pdf->SetFont('times', 'BI', 20);
-			$txt = "<p>TCPDF Example 002</p>
-			<p>Default page header and footer are disabled using setPrintHeader() and setPrintFooter() methods.</p>";
-			$pdf->Write(0, $txt, '', 0, 'C', true, 0, false, false, 0);
-			$pdf->Output('SamplePDF.pdf', 'I');
+			$pdf->SetFont('helvetica', '', 10);
+			for($page = 1; $page <= $count; $page++) {
+				if($page == 1) {
+					$tpl = $pdf->importPage($page);
+					$size = $pdf->getTemplateSize($tpl);
+					$orn = $size['h'] > $size['w'] ? 'P' : 'L';
+					$pdf->addPage($orn);
+					$pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
+					$pdf->Text(145, 32, "Sample Text");
+				} else {
+					$tpl = $pdf->importPage($page);
+					$size = $pdf->getTemplateSize($tpl);
+					$orn = $size['h'] > $size['w'] ? 'P' : 'L';
+					$pdf->addPage($orn);
+					$pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
+					$pdf->Text(18, 23, "Sample Text");
+				}
+			}
+			$res = 'data:pdf;base64,' . $pdf->Output('example_002.pdf', 'E');
+			return view('samplepdf')->with(['data' => $res]);
 		}
 }

@@ -1,4 +1,6 @@
 <?php
+namespace App\Classes\pdf\tcpdi;
+
 //============================================================+
 // File name   : tcpdi_parser.php
 // Version     : 1.1
@@ -48,7 +50,8 @@
  */
 
 // include class for decoding filters
-require_once(dirname(__FILE__).'/include/tcpdf_filters.php');
+// require_once(dirname(__FILE__).'/include/tcpdf_filters.php');
+use App\Classes\pdf\tcpdi\included\TCPDF_FILTERS;
 
 if (!defined ('PDF_TYPE_NULL'))
     define ('PDF_TYPE_NULL', 0);

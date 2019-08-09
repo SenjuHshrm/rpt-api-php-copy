@@ -22,6 +22,8 @@ namespace App\Classes\pdf\tcpdi;
 
 // Dummy shim to allow unmodified use of fpdf_tpl
 
+use App\Classes\pdf\tcpdf\TCPDF;
+
 class FPDF extends TCPDF {}
 
 require_once('fpdf_tpl.php');

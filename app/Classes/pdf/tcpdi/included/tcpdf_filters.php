@@ -1,4 +1,5 @@
 <?php
+namespace App\Classes\pdf\tcpdi\included;
 //============================================================+
 // File name   : tcpdf_filters.php
 // Version     : 1.0.001

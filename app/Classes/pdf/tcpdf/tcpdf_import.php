@@ -1,5 +1,4 @@
 <?php
-namespace App\Classes\pdf\tcpdf;
 //============================================================+
 // File name   : tcpdf_import.php
 // Version     : 1.0.001
@@ -44,9 +43,12 @@ namespace App\Classes\pdf\tcpdf;
  */
 
 // include the TCPDF class
-require_once(dirname(__FILE__).'/tcpdf.php');
+// require_once(dirname(__FILE__).'/tcpdf.php');
 // include PDF parser class
-require_once(dirname(__FILE__).'/tcpdf_parser.php');
+// require_once(dirname(__FILE__).'/tcpdf_parser.php');
+
+use App\Classes\pdf\tcpdf\TCPDF;
+use App\Classes\pdf\tcpdf\TCPDF_PARSER;
 
 /**
  * @class TCPDF_IMPORT
