@@ -162,6 +162,15 @@ class GetTaxDec extends Controller
 			// memoranda
 			$pdf->Text(37, 227, $req['memoranda']);
 
+			$pdf->SetFont('helvetica', '', 6);
+			// date printed
+			$pdf->StartTransform();
+			$pdf->Rotate(90);
+			$pdf->Text(200, 29, 'Date Printed: ' . $req['diag_date_printed']);
+
+			// printed by
+			$pdf->Text(200, 32, 'Printed By: ' . $req['diag_printed_by']);
+			$pdf->StopTransform();
 			return $pdf->Output('TD_' . $req['pin'] . '_' . $req['diag_date_printed'] . '.pdf', 'E');
 		}
 }

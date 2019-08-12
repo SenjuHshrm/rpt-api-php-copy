@@ -30,6 +30,8 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::post('/check-pin-land', 'CheckPINLand@check');
 		Route::post('/set-ref-num', 'SetRefNum@set');
 		Route::post('/get-taxdec', 'GetTaxDec@getFile');
+		Route::post('/get-land-faas', 'GenFaas@genLandFaas');
+		Route::post('/gen-bldg-faas', 'GEnFaas@genBldgFaas');
 		// GET requests
     Route::get('/test', 'TestCtrl@testToken');
     Route::get('/search-faas-record/{sysCaller}/{searchIn}/{searchBy}/{info}', 'SearchRecord@search');
