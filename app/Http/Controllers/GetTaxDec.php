@@ -114,13 +114,13 @@ class GetTaxDec extends Controller
 			//class
 			$pdf->Text(17, 156, $req['class']);
 			//area
-			$pdf->Text(45, 156, $req['area']);
+			$pdf->Text(45, 156, $req['area'] . ' sqm');
 			//mark val
 			$pdf->Text(75, 156, $req['market_val']);
 			//actual use
 			$pdf->Text(105, 156, $req['actual_use']);
 			//lvl
-			$pdf->Text(135, 156, $req['assess_level']);
+			$pdf->Text(142, 156, $req['assess_level']);
 			//assessed val
 			$pdf->Text(175, 156, $req['assessed_val']);
 			//total mark val
@@ -166,10 +166,10 @@ class GetTaxDec extends Controller
 			// date printed
 			$pdf->StartTransform();
 			$pdf->Rotate(90);
-			$pdf->Text(200, 29, 'Date Printed: ' . $req['diag_date_printed']);
+			$pdf->Text(200, 31, 'Date Printed: ' . $req['diag_date_printed']);
 
 			// printed by
-			$pdf->Text(200, 32, 'Printed By: ' . $req['diag_printed_by']);
+			$pdf->Text(200, 34, 'Printed By: ' . $req['diag_printed_by']);
 			$pdf->StopTransform();
 			return $pdf->Output('TD_' . $req['pin'] . '_' . $req['diag_date_printed'] . '.pdf', 'E');
 		}
