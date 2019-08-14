@@ -98,6 +98,6 @@ class GenLandFaasCtrl extends Controller
 					$pdf->Text(162, 188.8, $req['superseded_date']);
 				}
 			}
-			return $pdf->Output('TD_' . $req['pin'] . '_' . $req['diag_date_printed'] . '.pdf', 'E');
+			return $pdf->Output('TD_' . $req['pin'] . '_' . date('m-d-Y') . '.pdf', 'E');
 		}
 }

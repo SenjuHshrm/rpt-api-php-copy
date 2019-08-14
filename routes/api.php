@@ -25,13 +25,13 @@ Route::group(['middleware' => ['cors']], function() {
 		// POST requests
     Route::post('/login', 'LoginCtrl@login');
     Route::post('/register', 'RegisterCtrl@register');
-		Route::post('/save/file/clearance', 'SaveClearance@save');
     Route::post('/get-file/land-tax', 'GetClearance@getFile');
 		Route::post('/check-pin-land', 'CheckPINLand@check');
 		Route::post('/set-ref-num', 'SetRefNum@set');
-		Route::post('/get-taxdec', 'GetTaxDec@getFile');
-		Route::post('/get-land-faas', 'GenFaas@genLandFaas');
+		Route::post('/gen-taxdec', 'GetTaxDec@getFile');
+		Route::post('/gen-land-faas', 'GenFaas@genLandFaas');
 		Route::post('/gen-bldg-faas', 'GEnFaas@genBldgFaas');
+		Route::post('/gen-clearance', 'SaveClearance@save');
 		// GET requests
     Route::get('/test', 'TestCtrl@testToken');
     Route::get('/search-faas-record/{sysCaller}/{searchIn}/{searchBy}/{info}', 'SearchRecord@search');
