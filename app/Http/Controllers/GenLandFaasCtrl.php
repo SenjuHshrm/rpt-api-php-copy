@@ -34,14 +34,29 @@ class GenLandFaasCtrl extends Controller
 					$pdf->Text(126, 50, $req['survey_no']);
 					$pdf->Text(121, 54.9, $req['lot_no']);
 					$pdf->Text(115, 59.7, $req['block']);
-					$pdf->Text(26, 64.5, $req['owner_names']);
-					$pdf->Text(116, 64, $req['owner_tins']);
-					$pdf->Text(28, 74, $req['owner_addresses']);
-					$pdf->Text(27, 83.3, $req['owner_contact_nos']);
-					$pdf->Text(14, 94.3, $req['admin_names']);
-					$pdf->Text(14, 103.3, $req['admin_addresses']);
-					$pdf->Text(116, 89.8, $req['admin_tins']);
-					$pdf->Text(26, 108.5, $req['admin_contact_nos']);
+					if(strlen($req['owner_names']) > 60 && strlen($req['owner_names']) < 119) {
+						$pdf->SetFont('helvetica', '', 5);
+					} else if(strlen($req['owner_names']) > 119) {
+						$pdf->SetFont('helvetica', '', 4);
+					}
+					$pdf->writeHTMLCell(82, 9, 26, 64.5, '<span>'.$req['owner_names'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(82, 18, 118, 64, '<span>'.$req['owner_tins'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(76, 5, 27, 83.3, '<span>'.$req['owner_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->SetFont('helvetica', '', 9);
+					if(strlen($req['admin_names']) > 60 && strlen($req['admin_names']) < 119) {
+						$pdf->SetFont('helvetica', '', 5);
+					} else if(strlen($req['admin_names']) > 119) {
+						$pdf->SetFont('helvetica', '', 4);
+					}
+					$pdf->writeHTMLCell(93, 5, 14, 94.3, '<span>'.$req['admin_names'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(82, 18, 117, 89.8, '<span>'.$req['admin_tins'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(76, 5, 27, 110, '<span>'.$req['admin_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
+					// $pdf->Text(14, 94.3, $req['admin_names']);
+					// $pdf->Text(14, 103.3, $req['admin_addresses']);
+					// $pdf->Text(116, 89.8, $req['admin_tins']);
+					// $pdf->Text(26, 108.5, $req['admin_contact_nos']);
+					$pdf->writeHTMLCell(75, 9, 28, 74, '<span>'.$req['owner_addresses'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(75, 9, 28, 100, '<span>'.$req['admin_addresses'].'</span>', 0, 0, 0, true, 'J', true);
 					$pdf->Text(31, 128.3, $req['street_no']);
 					$pdf->Text(130, 128.3, $req['barangay_district']);
 					$pdf->Text(34, 137, $req['municipality']);
