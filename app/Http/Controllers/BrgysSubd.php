@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\DB;
 class BrgysSubd extends Controller
 {
     public function get() {
-			return DB::select('CALL get_barangays_and_subdivisions()');
+			return json_encode([ 'res' => DB::select('CALL get_barangays_and_subdivisions()')]);
 		}
 }
