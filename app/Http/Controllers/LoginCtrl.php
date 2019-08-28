@@ -10,7 +10,7 @@ use App\Classes\genJWT;
 class LoginCtrl extends Controller
 {
     public function login(Request $request) {
-        $qStr = "CALL login('" . $request['username'] . "')";
+        $qStr = "CALL login_web('" . $request['username'] . "')";
         $q = DB::select($qStr);
         $resobj = new loginRes();
         $jwtgen = new genJWT();
@@ -26,7 +26,7 @@ class LoginCtrl extends Controller
                 $jwtgen = new genJWT();
                 $resobj->success = true;
                 $resobj->status = 'Valid credentials';
-                $resobj->token = $jwtgen->generate($data->username, $name);
+                $resobj->token = $jwtgen->generate($data->username, $name, $data->account_type);
                 return json_encode($resobj);
             } else {
                 $resobj->success = false;

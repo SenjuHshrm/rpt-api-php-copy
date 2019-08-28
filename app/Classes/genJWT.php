@@ -11,11 +11,12 @@ class genJWT {
     public $alg = 'HS256';
     public $typ = 'JWT';
 
-    public function generate($username, $name) {
+    public function generate($username, $name, $type) {
         $data = new token();
         $data->username = $username;
         $data->name = $name;
         $data->iat = round(microtime(true) * 1000);
+				$data->type = $type;
         $jwtToken = base64_encode(json_encode($this->header())) . '.' . base64_encode(json_encode($data));
         $sign = $this->sign($jwtToken);
         $response = $jwtToken . '.' . $sign;
@@ -67,7 +68,7 @@ class genJWT {
 			$arr = explode('.', $token);
 			$obj = json_decode(base64_decode($arr[1]));
 			if(isset($obj)) {
-				$res = DB::select("CALL login('".$obj->username."')");
+				$res = DB::select("CALL login_web('".$obj->username."')");
 				if(count($res) > 0) {
 					return true;
 				} else {

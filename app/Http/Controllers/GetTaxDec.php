@@ -91,7 +91,7 @@ class GetTaxDec extends Controller
 			$pdf->Text(75, 172, $req['total_market_val']);
 			$pdf->Text(175, 172, $req['total_assessed_val']);
 			$pdf->SetFont('helvetica', '', 10);
-			$pdf->Text(45, 181, $req['total_assessed_value_in_words'] . ' Only');
+			$pdf->writeHTMLCell(190, 2, 13, 181, '<span>'.$req['total_assessed_value_in_words'] . ' Only</span>', 0, 0, 0, true, 'C', true);
 			$pdf->Text(135, 193, $req['pa_effectivity_assess_quarter']);
 			$pdf->Text(170, 193, $req['pa_effectivity_assess_year']);
 			$pdf->Text(45, 205, $req['approved_by1']);

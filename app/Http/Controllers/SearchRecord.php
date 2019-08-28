@@ -107,15 +107,15 @@ class SearchRecord extends Controller
     }
 
     public function searchLandByPIN($id, $sysCaller) {
-        return DB::select("CALL search_land_faas('".$id."', 'PIN', '".$sysCaller."')");
+        return DB::select("CALL search_land_faas_web('".$id."', 'PIN', '".$sysCaller."')");
     }
 
     public function searchLandByARP($id, $sysCaller) {
-        return DB::select("CALL search_land_faas('".$id."', 'ARP_NO', '".$sysCaller."')");
+        return DB::select("CALL search_land_faas_web('".$id."', 'ARP_NO', '".$sysCaller."')");
     }
 
     public function searchLandByName($id, $sysCaller) {
-        $res = DB::select("CALL search_land_faas('".$id."', 'NAME', '".$sysCaller."')");
+        $res = DB::select("CALL search_land_faas_web('".$id."', 'NAME', '".$sysCaller."')");
         return $res;
     }
 
@@ -155,14 +155,14 @@ class SearchRecord extends Controller
     }
 
     private function searchBldgByPIN($id, $sysCaller) {
-        return DB::select("CALL search_building_faas('".$id."', 'PIN', '".$sysCaller."')");
+        return DB::select("CALL search_building_faas_web('".$id."', 'PIN', '".$sysCaller."')");
     }
 
     private function searchBldgByARP($id, $sysCaller) {
-        return DB::select("CALL search_building_faas('".$id."', 'ARP_NO', '".$sysCaller."')");
+        return DB::select("CALL search_building_faas_web('".$id."', 'ARP_NO', '".$sysCaller."')");
     }
 
     private function searchBldgByName($id, $sysCaller) {
-        return DB::select("CALL search_building_faas('".$id."', 'NAME', '".$sysCaller."')");
+        return DB::select("CALL search_building_faas_web('".$id."', 'NAME', '".$sysCaller."')");
     }
 }
