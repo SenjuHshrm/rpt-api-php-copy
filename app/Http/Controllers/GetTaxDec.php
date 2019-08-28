@@ -20,6 +20,11 @@ class GetTaxDec extends Controller
 			}
     }
 
+		private function addToLog($username, $id) {
+			$q = DB::select("CALL login('".$username."')");
+			DB::select("CALL add_land_faas_log('PRINT LAND TAX DECLARATION', ".$q[0]->user_id.", ".$id.")");
+		}
+
 		private function makeFile(Request $req) {
 			$pdf = new TCPDI(PDF_PAGE_ORIENTATION, 'mm', PDF_PAGE_FORMAT, true, 'UTF-8', false);
 			$pdf->SetTitle('TD_' . $req['pin'] . '_' . $req['diag_date_printed'] . '.pdf');
@@ -112,6 +117,7 @@ class GetTaxDec extends Controller
 			$pdf->Text(200, 31, 'Date Printed: ' . $req['diag_date_printed']);
 			$pdf->Text(200, 34, 'Printed By: ' . $req['diag_printed_by']);
 			$pdf->StopTransform();
+			$this->addToLog($req['username'], $req['id']);
 			return $pdf->Output('TD_' . $req['pin'] . '_' . $req['diag_date_printed'] . '.pdf', 'E');
 		}
 }
