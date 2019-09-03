@@ -42,7 +42,7 @@ class GetTaxDec extends Controller
 			$pdf->SetFont('helvetica', '', 10);
 			$pdf->Text(30, 27, $req['td_no']);
 			$pdf->Text(142, 27, $req['pin']);
-			if(strlen($req['owner_names']) > 100 && strlen($req['owner_names']) < 199) {
+			if(strlen($req['owner_names']) > 84 && strlen($req['owner_names']) < 199) {
 				$pdf->SetFont('helvetica', '', 5);
 			} else if(strlen($req['owner_names']) > 199) {
 				$pdf->SetFont('helvetica', '', 4);
@@ -51,7 +51,7 @@ class GetTaxDec extends Controller
 			$pdf->writeHTMLCell(55, 9, 146, 32, '<span>'.$req['owner_tins'].'</span>', 0, 0, 0, true, 'J', true);
 			$pdf->writeHTMLCell(72, 6, 136, 46, '<span>'.$req['owner_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
 			$pdf->SetFont('helvetica', '', 10);
-			if(strlen($req['admin_names']) > 100 && strlen($req['admin_names']) < 199) {
+			if(strlen($req['admin_names']) > 84 && strlen($req['admin_names']) < 199) {
 				$pdf->SetFont('helvetica', '', 5);
 			} else if(strlen($req['admin_names']) > 199) {
 				$pdf->SetFont('helvetica', '', 4);
@@ -62,8 +62,10 @@ class GetTaxDec extends Controller
 			$pdf->SetFont('helvetica', '', 10);
 			$pdf->Text(30, 42, $req['owner_addresses']);
 			$pdf->Text(30, 63, $req['admin_addresses']);
-			$pdf->Text(50, 73, $req['street_no']);
-			$pdf->Text(112, 73, $req['brgy_district']);
+			//$pdf->Text(50, 73, $req['street_no']);
+			$pdf->writeHTMLCell(43, 2, 49, 73, '<span>'.$req['street_no'].'</span>', 0, 0, 0, true, 'C', true);
+			//$pdf->Text(112, 73, $req['brgy_district']);
+			$pdf->writeHTMLCell(50, 2, 95, 73, '<span>'.$req['brgy_district'].'</span>', 0, 0, 0, true, 'C', true);
 			$pdf->Text(48, 84, $req['oct_tct_no']);
 			$pdf->Text(128, 84, $req['survey_no']);
 			$pdf->Text(27, 89, $req['condo_cert']);
