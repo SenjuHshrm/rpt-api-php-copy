@@ -30,7 +30,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::post('/set-ref-num', 'SetRefNum@set');
 		Route::post('/gen-taxdec', 'GetTaxDec@getFile');
 		Route::post('/gen-land-faas', 'GenFaas@genLandFaas');
-		Route::post('/gen-bldg-faas', 'GEnFaas@genBldgFaas');
+		Route::post('/gen-bldg-faas', 'GenFaas@genBldgFaas');
 		Route::post('/gen-clearance', 'SaveClearance@save');
 		// GET requests
     Route::get('/test', 'TestCtrl@testToken');

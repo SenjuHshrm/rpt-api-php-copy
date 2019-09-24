@@ -27,51 +27,54 @@ class GenLandFaasCtrl extends Controller
 					$pdf->SetFont('helvetica', '', 10);
 					$pdf->Text(145, 32, $req['transaction_code']);
 					$pdf->SetFont('helvetica', '', 9);
-					$pdf->Text(28, 45, $req['arp_no']);
-					$pdf->Text(116, 45, $req['pin']);
-					$pdf->Text(45, 52.5, $req['oct_tct_no']);
+					$pdf->Text(28, 45.9, $req['arp_no']);
+					$pdf->Text(116, 45.9, $req['pin']);
+					$pdf->Text(45, 51.1, $req['oct_tct_no']);
 					$pdf->Text(25, 57.3, $req['oct_tct_dated']);
-					$pdf->Text(126, 50, $req['survey_no']);
-					$pdf->Text(121, 54.9, $req['lot_no']);
-					$pdf->Text(115, 59.7, $req['block']);
-					if(strlen($req['owner_names']) > 60 && strlen($req['owner_names']) < 119) {
+					$pdf->Text(126, 51.1, $req['survey_no']);
+					$pdf->Text(167, 51.1, $req['lot_no']);
+					$pdf->Text(189, 51.1, $req['block']);
+					if(strlen($req['owner_names']) > 160) {
 						$pdf->SetFont('helvetica', '', 5);
-					} else if(strlen($req['owner_names']) > 119) {
+					} else if(strlen($req['owner_names']) < 160 && strlen($req['owner_names']) > 320) {
 						$pdf->SetFont('helvetica', '', 4);
 					}
-					$pdf->writeHTMLCell(82, 9, 26, 64.5, '<span>'.$req['owner_names'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(82, 18, 118, 64, '<span>'.$req['owner_tins'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(76, 5, 27, 83.3, '<span>'.$req['owner_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(112, 19, 15, 60, '<span>'.$req['owner_names'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(105, 12, 22, 80, '<span>'.$req['owner_tins'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(59, 12, 143, 80, '<span>'.$req['owner_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
 					$pdf->SetFont('helvetica', '', 9);
-					if(strlen($req['admin_names']) > 60 && strlen($req['admin_names']) < 119) {
+					if(strlen($req['admin_names']) > 160) {
 						$pdf->SetFont('helvetica', '', 5);
-					} else if(strlen($req['admin_names']) > 119) {
+					} else if(strlen($req['admin_names']) < 160 && strlen($req['admin_names']) > 320) {
 						$pdf->SetFont('helvetica', '', 4);
 					}
-					$pdf->writeHTMLCell(93, 5, 14, 94.3, '<span>'.$req['admin_names'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(82, 18, 117, 89.8, '<span>'.$req['admin_tins'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(76, 5, 27, 110, '<span>'.$req['admin_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
-					// $pdf->Text(14, 94.3, $req['admin_names']);
-					// $pdf->Text(14, 103.3, $req['admin_addresses']);
-					// $pdf->Text(116, 89.8, $req['admin_tins']);
-					// $pdf->Text(26, 108.5, $req['admin_contact_nos']);
-					$pdf->writeHTMLCell(75, 9, 28, 74, '<span>'.$req['owner_addresses'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(75, 9, 28, 100, '<span>'.$req['admin_addresses'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->Text(31, 128.3, $req['street_no']);
-					$pdf->Text(130, 128.3, $req['barangay_district']);
-					$pdf->Text(34, 137, $req['municipality']);
-					$pdf->Text(131, 136.7, $req['province_city']);
-					$pdf->Text(25, 156, $req['north']);
-					$pdf->Text(25, 164, $req['east']);
-					$pdf->Text(25, 172, $req['south']);
-					$pdf->Text(25, 181, $req['west']);
-					$pdf->Text(21, 203, $req['class']);
-					$pdf->Text(66, 203, $req['sub_class']);
-					$pdf->Text(101, 203, $req['area'] . ' sqm');
-					$pdf->Text(137, 203, 'P ' . $req['unit_value']);
-					$pdf->Text(170, 203, $req['base_market_value']);
-					$pdf->Text(101, 223, $req['area'] . ' sqm');
-					$pdf->Text(170, 223, $req['total_base_market_value']);
+					$pdf->writeHTMLCell(112, 19, 15, 102, '<span>'.$req['admin_names'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(105, 12, 22, 122, '<span>'.$req['admin_tins'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(59, 12, 143, 122, '<span>'.$req['admin_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->SetFont('helvetica', '', 9);
+					$pdf->writeHTMLCell(72, 19, 130, 60, '<span>'.$req['owner_addresses'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(72, 19, 130, 102, '<span>'.$req['admin_addresses'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->Text(31, 148, $req['street_no']);
+					$pdf->Text(130, 148, $req['barangay_district']);
+					$pdf->Text(34, 156, $req['municipality']);
+					$pdf->Text(131, 156, $req['province_city']);
+					$pdf->Text(25, 173, $req['north']);
+					$pdf->Text(25, 182, $req['east']);
+					$pdf->Text(25, 190, $req['south']);
+					$pdf->Text(25, 199, $req['west']);
+					$pdf->writeHTMLCell(37.9, 2, 13, 221, '<span>'.$req['class'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 51, 221, '<span>'.$req['sub_class'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 89, 221, '<span>'.$req['area'].' sqm</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 127, 221, '<span>P '.$req['unit_value'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(34, 2, 169, 221, '<span>'.$req['base_market_value'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(37.9, 2, 89, 240, '<span>'.$req['area'].' sqm</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 169, 240, '<span>'.$req['total_base_market_value'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->SetFont('helvetica', '', 6);
+					$pdf->StartTransform();
+					$pdf->Rotate(90);
+					$pdf->Text(200, 37, 'Date Printed: ' . $req['diag_date_printed']);
+					$pdf->Text(200, 40, 'Printed By: ' . $req['diag_printed_by']);
+					$pdf->StopTransform();
 				}
 				// Page 2
 				else if($page == 2) {
@@ -81,38 +84,39 @@ class GenLandFaasCtrl extends Controller
 					$pdf->addPage($orn);
 					$pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
 					$pdf->SetFont('helvetica', '', 9);
-					$pdf->Text(22, 58, $req['pa_actual_use']);
-					$pdf->Text(68, 58, $req['pa_market_value']);
-					$pdf->Text(129, 58, $req['pa_assessment_level']);
-					$pdf->Text(163, 58, $req['pa_assessed_value']);
-					$pdf->Text(68, 73, $req['pa_market_value']);
-					$pdf->Text(163, 73, $req['pa_total_assessed_value']);
+					$pdf->writeHTMLCell(47, 2, 13, 58, '<span>'.$req['pa_actual_use'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 65, 58, '<span>'.$req['pa_market_value'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(47, 2, 108, 58, '<span>'.$req['pa_assessment_level'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 160, 58, '<span>'.$req['pa_assessed_value'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 65, 73, '<span>'.$req['pa_market_value'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 160, 73, '<span>'.$req['pa_total_assessed_value'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->SetFont('helvetica', 'B', 9);
-					$pdf->Text(27.6, 81.5, $req['pa_tax']);
-					$pdf->Text(46.5, 81.5, $req['pa_exp']);
+					$pdf->Text(30.5, 81.5, $req['pa_tax']);
+					$pdf->Text(55, 81.5, $req['pa_exp']);
 					$pdf->SetFont('helvetica', '', 9);
-					$pdf->Text(129, 81.5, 'Quarter: ' . $req['pa_effectivity_assess_quarter'] . "\t\t\t\t\t\t\tYear: " . $req['pa_effectivity_assess_year']);
+					$pdf->Text(135, 81.5, $req['pa_effectivity_assess_quarter']);
+					$pdf->Text(160, 81.5, $req['pa_effectivity_assess_year']);
 					$pdf->SetFont('helvetica', '', 10);
-					$pdf->Text(25, 108, $req['appraised_by']);
-					$pdf->Text(71, 108, $req['appraised_by_date']);
-					$pdf->Text(121, 108, $req['recommending']);
-					$pdf->Text(165, 108, $req['recommending_date']);
-					$pdf->Text(77, 116.5, $req['approved_by']);
-					$pdf->Text(160, 116.5, $req['approved_by_date']);
-					$pdf->Text(39, 132, $req['memoranda']);
-					$pdf->Text(87, 143, $req['date_created']);
-					$pdf->Text(153, 143, $req['entry_by']);
-					$pdf->Text(22, 159.6, $req['superseded_pin']);
-					$pdf->Text(27, 164.5, $req['superseded_arp_no']);
-					$pdf->Text(118, 164.5, $req['superseded_td_no']);
-					$pdf->Text(48, 169.4, $req['superseded_total_assessed_value']);
-					$pdf->Text(40, 174, $req['superseded_previous_owner']);
-					$pdf->Text(54, 179, $req['superseded_effectivity_assess']);
-					$pdf->Text(35, 184, $req['superseded_ar_page_no']);
-					$pdf->Text(43, 188.8, $req['superseded_recording_personnel']);
-					$pdf->Text(162, 188.8, $req['superseded_date']);
+					$pdf->writeHTMLCell(55, 2, 13, 114, '<span>'.$req['appraised_by'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(36, 2, 69, 114, '<span>'.$req['appraised_by_date'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(55, 2, 106, 114, '<span>'.$req['recommending'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(36, 2, 162, 114, '<span>'.$req['recommending_date'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(60, 2, 70, 131, '<span>'.$req['approved_by'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(42, 2, 148, 131, '<span>'.$req['approved_by_date'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(190, 18, 13, 146.5, '<p style="text-indent: 75px">'.$req['memoranda'].'</p>', 0, 0, 0, true, 'J', true);
+					$pdf->Text(101, 172, $req['date_created']);
+					$pdf->writeHTMLCell(59, 1, 140, 171, '<p>'.$req['entry_by'].'</p>', 0, 0, 0, true, 'C', true);
+					$pdf->Text(22, 186.3, $req['superseded_pin']);
+					$pdf->Text(28, 191, $req['superseded_arp_no']);
+					$pdf->Text(127, 191, $req['superseded_td_no']);
+					$pdf->Text(48, 196, $req['superseded_total_assessed_value']);
+					$pdf->Text(40, 201, $req['superseded_previous_owner']);
+					$pdf->Text(54, 205.6, $req['superseded_effectivity_assess']);
+					$pdf->Text(35, 210.6, $req['superseded_ar_page_no']);
+					$pdf->Text(43, 215.6, $req['superseded_recording_personnel']);
+					$pdf->Text(166, 215.6, $req['superseded_date']);
 				}
 			}
-			return $pdf->Output('TD_' . $req['pin'] . '_' . date('m-d-Y') . '.pdf', 'E');
+			return $pdf->Output('LandFaas_' . $req['pin'] . '_' . date('m-d-Y') . '.pdf', 'E');
 		}
 }
