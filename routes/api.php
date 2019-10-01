@@ -28,7 +28,8 @@ Route::group(['middleware' => ['cors']], function() {
     Route::post('/get-file/land-tax', 'GetClearance@getFile');
 		Route::post('/check-pin-land', 'CheckPINLand@check');
 		Route::post('/set-ref-num', 'SetRefNum@set');
-		Route::post('/gen-taxdec', 'GetTaxDec@getFile');
+		Route::post('/gen-taxdec-land', 'GetTaxDecLand@getFile');
+    Route::post('/gen-taxdec-bldg', 'GetTaxDecBldg@getFile');
 		Route::post('/gen-land-faas', 'GenFaas@genLandFaas');
 		Route::post('/gen-bldg-faas', 'GenFaas@genBldgFaas');
 		Route::post('/gen-clearance', 'SaveClearance@save');

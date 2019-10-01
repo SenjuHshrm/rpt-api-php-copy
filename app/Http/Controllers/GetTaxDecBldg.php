@@ -8,25 +8,25 @@ use App\Classes\pdf\tcpdf\TCPDF;
 use App\Classes\pdf\tcpdi\TCPDI;
 use App\Http\Controllers\ChekRequestAuth;
 
-class GetTaxDec extends Controller
+class GetTaxDecBldg extends Controller
 {
     public function getFile(Request $req) {
-			$header = $req->header('Authorization');
-			$token = new CheckRequestAuth();
-			if($token->testToken($header)) {
-				return json_encode([ 'res' => $this->makeFile($req) ]);
-			} else {
-				return json_encode([ 'res' => false ]);
-			}
+      $header = $req->header('Authorization');
+      $token = new CheckRequestAuth();
+      if($token->testToken($header)) {
+        return json_encode([ 'res' => $this->makeFile($req) ]);
+      } else {
+        return json_encode([ 'res' => false ]);
+      }
     }
 
-		private function addToLog($username, $id) {
-			$q = DB::select("CALL login('".$username."')");
-			DB::select("CALL add_land_faas_log('PRINT LAND TAX DECLARATION', ".$q[0]->user_id.", ".$id.")");
-		}
+    private function addToLog($username, $id) {
+      $q = DB::select("CALL login_web('".$username."')");
+      DB::select("CALL add_building_faas_log('PRINT TAX DECLARATION', ".$q[0]->user_id.", ".$id.")");
+    }
 
-		private function makeFile(Request $req) {
-			$pdf = new TCPDI(PDF_PAGE_ORIENTATION, 'mm', PDF_PAGE_FORMAT, true, 'UTF-8', false);
+    private function makeFile(Request $req) {
+      $pdf = new TCPDI(PDF_PAGE_ORIENTATION, 'mm', PDF_PAGE_FORMAT, true, 'UTF-8', false);
 			$pdf->SetTitle('TD_' . $req['pin'] . '_' . $req['diag_date_printed'] . '.pdf');
 			$pdf->SetDisplayMode(100);
 			$count = $pdf->setSourceFile(base_path().'\resources\assets\pdf\tax_declaration_template.pdf');
@@ -120,5 +120,5 @@ class GetTaxDec extends Controller
 			$pdf->StopTransform();
 			$this->addToLog($req['username'], $req['id']);
 			return $pdf->Output('TD_' . $req['pin'] . '_' . $req['diag_date_printed'] . '.pdf', 'E');
-		}
+    }
 }

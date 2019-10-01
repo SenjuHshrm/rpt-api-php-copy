@@ -117,6 +117,12 @@ class GenLandFaasCtrl extends Controller
 					$pdf->Text(166, 215.6, $req['superseded_date']);
 				}
 			}
+			$this->addToLog($req['username'], $req['id']);
 			return $pdf->Output('LandFaas_' . $req['pin'] . '_' . date('m-d-Y') . '.pdf', 'E');
+		}
+
+		private function addToLog($username, $id) {
+			$q = DB::select("CALL login_web('".$username."')");
+			DB::select("CALL add_land_faas_log('PRINT LAND FAAS', ".$q[0]->user_id.", ".$id.")");
 		}
 }

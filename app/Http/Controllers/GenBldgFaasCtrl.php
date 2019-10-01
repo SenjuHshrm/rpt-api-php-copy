@@ -130,4 +130,9 @@ class GenBldgFaasCtrl extends Controller
 			}
 			return $pdf->Output('BldgFaas_' . $req['pin'] . '_' . date('m-d-Y') . '.pdf', 'E');
 		}
+
+    private function addToLog($username, $id){
+      $q = DB::select("CALL login_web('".$username."')");
+      DB::select("CALL add_building_faas_log('PRINT BUILDING FAAS', ".$q[0]->user_id.", ".$id.")");
+    }
 }
