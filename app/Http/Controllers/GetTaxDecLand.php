@@ -22,7 +22,7 @@ class GetTaxDecLand extends Controller
 
 		private function addToLog($username, $id) {
 			$q = DB::select("CALL login_web('".$username."')");
-			DB::select("CALL add_land_faas_log('PRINT TAX DECLARATION', ".$q[0]->user_id.", ".$id.")");
+			DB::select("CALL add_land_faas_log('PRINT LAND TAX DECLARATION', ".$q[0]->user_id.", ".$id.")");
 		}
 
 		private function makeFile(Request $req) {
