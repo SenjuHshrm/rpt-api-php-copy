@@ -34,7 +34,12 @@ class SaveClearance extends Controller
 			$pdf->SetFont('helvetica', '', 12);
 			$pdf->Text(157, 36, $req['current_date']);
 			$pdf->SetFont('helvetica', '', 9);
-			$pdf->Text(131, 66, $req['owner_names']);
+			if(strlen($req['owner_names']) > 25) {
+				$pdf->SetFont('helvetica', '', 5);
+			} else if (strlen($req['owner_names']) > 50) {
+				$pdf->SetFont('helvetica', '', 4);
+			}
+			$pdf->writeHTMLCell(52, 2, 131, 65, '<span>'.$req['owner_names'].'</span>', 0, 0, 0, true, 'L', true);
 			$pdf->SetFont('helvetica', '', 10);
 			$pdf->Text(35, 79, $req['pin']);
 			$pdf->Text(130, 79, $req['arp_no']);
