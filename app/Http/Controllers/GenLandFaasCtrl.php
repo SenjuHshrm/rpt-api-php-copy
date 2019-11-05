@@ -24,56 +24,55 @@ class GenLandFaasCtrl extends Controller
 					$orn = $size['h'] > $size['w'] ? 'P' : 'L';
 					$pdf->addPage($orn);
 					$pdf->useTemplate($tpl, null, null, 0, 0, TRUE);
-					$pdf->SetFont('helvetica', '', 10);
-					$pdf->Text(145, 32, $req['transaction_code']);
 					$pdf->SetFont('helvetica', '', 9);
+					$pdf->Text(145, 32, $req['transaction_code']);
 					$pdf->Text(28, 45.9, $req['arp_no']);
 					$pdf->Text(116, 45.9, $req['pin']);
-					$pdf->Text(45, 51.1, $req['oct_tct_no']);
-					$pdf->Text(25, 57.3, $req['oct_tct_dated']);
-					$pdf->Text(126, 51.1, $req['survey_no']);
-					$pdf->Text(167, 51.1, $req['lot_no']);
+					$pdf->Text(47, 53.2, $req['oct_tct_no']);
+					$pdf->Text(25, 58, $req['oct_tct_dated']);
+					$pdf->Text(126, 50.9, $req['survey_no']);
+					$pdf->Text(121, 55.5, $req['lot_no']);
 					$pdf->Text(189, 51.1, $req['block']);
 					if(strlen($req['owner_names']) > 160) {
 						$pdf->SetFont('helvetica', '', 5);
 					} else if(strlen($req['owner_names']) < 160 && strlen($req['owner_names']) > 320) {
 						$pdf->SetFont('helvetica', '', 4);
 					}
-					$pdf->writeHTMLCell(112, 19, 15, 60, '<span>'.$req['owner_names'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(105, 12, 22, 80, '<span>'.$req['owner_tins'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(59, 12, 143, 80, '<span>'.$req['owner_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(93, 11, 14, 69, '<span>'.$req['owner_names'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(93, 9, 14, 84, '<span>'.$req['owner_tins'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(93, 9, 109, 84, '<span>'.$req['owner_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
 					$pdf->SetFont('helvetica', '', 9);
 					if(strlen($req['admin_names']) > 160) {
 						$pdf->SetFont('helvetica', '', 5);
 					} else if(strlen($req['admin_names']) < 160 && strlen($req['admin_names']) > 320) {
 						$pdf->SetFont('helvetica', '', 4);
 					}
-					$pdf->writeHTMLCell(112, 19, 15, 102, '<span>'.$req['admin_names'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(105, 12, 22, 122, '<span>'.$req['admin_tins'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(59, 12, 143, 122, '<span>'.$req['admin_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(68, 14, 39, 95, '<span>'.$req['admin_names'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(85, 12, 22, 110, '<span>'.$req['admin_tins'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(93, 8, 109, 114, '<span>'.$req['admin_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
 					$pdf->SetFont('helvetica', '', 9);
-					$pdf->writeHTMLCell(72, 19, 130, 60, '<span>'.$req['owner_addresses'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(72, 19, 130, 102, '<span>'.$req['admin_addresses'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->Text(31, 148, $req['street_no']);
-					$pdf->Text(130, 148, $req['barangay_district']);
-					$pdf->Text(34, 156, $req['municipality']);
-					$pdf->Text(131, 156, $req['province_city']);
-					$pdf->Text(25, 173, $req['north']);
-					$pdf->Text(25, 182, $req['east']);
-					$pdf->Text(25, 190, $req['south']);
-					$pdf->Text(25, 199, $req['west']);
-					$pdf->writeHTMLCell(37.9, 2, 13, 221, '<span>'.$req['class'].'</span>', 0, 0, 0, true, 'C', true);
-					$pdf->writeHTMLCell(37.9, 2, 51, 221, '<span>'.$req['sub_class'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(93, 11, 109, 69, '<span>'.$req['owner_addresses'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(93, 11, 109, 99, '<span>'.$req['admin_addresses'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->Text(31, 135, $req['street_no']);
+					$pdf->Text(130, 135, $req['barangay_district']);
+					$pdf->Text(34, 144, $req['municipality']);
+					$pdf->Text(131, 144, $req['province_city']);
+					$pdf->Text(25, 161, $req['north']);
+					$pdf->Text(25, 167, $req['east']);
+					$pdf->Text(25, 173, $req['south']);
+					$pdf->Text(25, 180, $req['west']);
+					$pdf->writeHTMLCell(37.9, 2, 13, 201.5, '<span>'.$req['class'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 51, 201.5, '<span>'.$req['sub_class'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 89, 201.5, '<span>'.$req['area'].' sqm</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 127, 201.5, '<span>P '.$req['unit_value'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(37.9, 2, 165, 201.5, '<span>P '.$req['base_market_value'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 89, 221, '<span>'.$req['area'].' sqm</span>', 0, 0, 0, true, 'C', true);
-					$pdf->writeHTMLCell(37.9, 2, 127, 221, '<span>P '.$req['unit_value'].'</span>', 0, 0, 0, true, 'C', true);
-					$pdf->writeHTMLCell(34, 2, 169, 221, '<span>'.$req['base_market_value'].'</span>', 0, 0, 0, true, 'J', true);
-					$pdf->writeHTMLCell(37.9, 2, 89, 240, '<span>'.$req['area'].' sqm</span>', 0, 0, 0, true, 'C', true);
-					$pdf->writeHTMLCell(37.9, 2, 169, 240, '<span>'.$req['total_base_market_value'].'</span>', 0, 0, 0, true, 'J', true);
+					$pdf->writeHTMLCell(37.9, 2, 165, 221, '<span>P '.$req['total_base_market_value'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->SetFont('helvetica', '', 6);
 					$pdf->StartTransform();
 					$pdf->Rotate(90);
-					$pdf->Text(200, 37, 'Date Printed: ' . $req['diag_date_printed']);
-					$pdf->Text(200, 40, 'Printed By: ' . $req['diag_printed_by']);
+					$pdf->Text(200, 19, 'Date Printed: ' . $req['diag_date_printed']);
+					$pdf->Text(200, 22, 'Printed By: ' . $req['diag_printed_by']);
 					$pdf->StopTransform();
 				}
 				// Page 2
@@ -86,7 +85,7 @@ class GenLandFaasCtrl extends Controller
 					$pdf->SetFont('helvetica', '', 9);
 					$pdf->writeHTMLCell(47, 2, 13, 58, '<span>'.$req['pa_actual_use'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 65, 58, '<span>'.$req['pa_market_value'].'</span>', 0, 0, 0, true, 'C', true);
-					$pdf->writeHTMLCell(47, 2, 108, 58, '<span>'.$req['pa_assessment_level'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(47, 2, 108, 58, '<span>'.$req['pa_assessment_level'].'%</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 160, 58, '<span>'.$req['pa_assessed_value'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 65, 73, '<span>'.$req['pa_market_value'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 160, 73, '<span>'.$req['pa_total_assessed_value'].'</span>', 0, 0, 0, true, 'C', true);
