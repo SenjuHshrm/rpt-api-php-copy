@@ -32,7 +32,7 @@ class GenLandFaasCtrl extends Controller
 					$pdf->Text(25, 58, $req['oct_tct_dated']);
 					$pdf->Text(126, 50.9, $req['survey_no']);
 					$pdf->Text(121, 55.5, $req['lot_no']);
-					$pdf->Text(189, 51.1, $req['block']);
+					$pdf->Text(114, 60, $req['block']);
 					if(strlen($req['owner_names']) > 160) {
 						$pdf->SetFont('helvetica', '', 5);
 					} else if(strlen($req['owner_names']) < 160 && strlen($req['owner_names']) > 320) {
