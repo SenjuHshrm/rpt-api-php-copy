@@ -49,6 +49,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::get('/get-brgys-subd', 'BrgysSubd@get');
 		Route::get('/get-bldg-struct-mat', 'GetBldgStructMat@getLs');
 		Route::get('/get-bldg-heights', 'GetBldgStHeight@get');
+    Route::get('/get-bldg-incr', 'GetBldgAddItems@getItems');
 		// PUT requests
 		Route::put('/land-asmt/add', 'AssessLand@addLand');
 		Route::put('/land-asmt/update', 'AssessLand@updateLand');

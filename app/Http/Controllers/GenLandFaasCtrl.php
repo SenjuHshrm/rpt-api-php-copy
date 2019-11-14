@@ -33,18 +33,18 @@ class GenLandFaasCtrl extends Controller
 					$pdf->Text(126, 50.9, $req['survey_no']);
 					$pdf->Text(121, 55.5, $req['lot_no']);
 					$pdf->Text(114, 60, $req['block']);
-					if(strlen($req['owner_names']) > 160) {
+					if(strlen($req['owner_names']) > 123) {
 						$pdf->SetFont('helvetica', '', 5);
-					} else if(strlen($req['owner_names']) < 160 && strlen($req['owner_names']) > 320) {
+					} else if(strlen($req['owner_names']) < 123 && strlen($req['owner_names']) > 280) {
 						$pdf->SetFont('helvetica', '', 4);
 					}
 					$pdf->writeHTMLCell(93, 11, 14, 69, '<span>'.$req['owner_names'].'</span>', 0, 0, 0, true, 'J', true);
 					$pdf->writeHTMLCell(93, 9, 14, 84, '<span>'.$req['owner_tins'].'</span>', 0, 0, 0, true, 'J', true);
 					$pdf->writeHTMLCell(93, 9, 109, 84, '<span>'.$req['owner_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
 					$pdf->SetFont('helvetica', '', 9);
-					if(strlen($req['admin_names']) > 160) {
+					if(strlen($req['admin_names']) > 123) {
 						$pdf->SetFont('helvetica', '', 5);
-					} else if(strlen($req['admin_names']) < 160 && strlen($req['admin_names']) > 320) {
+					} else if(strlen($req['admin_names']) < 123 && strlen($req['admin_names']) > 280) {
 						$pdf->SetFont('helvetica', '', 4);
 					}
 					$pdf->writeHTMLCell(68, 14, 39, 95, '<span>'.$req['admin_names'].'</span>', 0, 0, 0, true, 'J', true);

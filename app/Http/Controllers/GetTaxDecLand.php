@@ -59,9 +59,9 @@ class GetTaxDecLand extends Controller
 			$pdf->writeHTMLCell(118, 6, 14, 59, '<span>'.$req['admin_names'].'</span>', 0, 0, 0, true, 'J', true);
 			$pdf->writeHTMLCell(55, 6, 146, 59, '<span>'.$req['admin_tins'].'</span>', 0, 0, 0, true, 'J', true);
 			$pdf->writeHTMLCell(72, 6, 136, 69, '<span>'.$req['admin_contact_nos'].'</span>', 0, 0, 0, true, 'J', true);
-			$pdf->SetFont('helvetica', '', 10);
-			$pdf->Text(30, 45, $req['owner_addresses']);
-			$pdf->Text(30, 69, $req['admin_addresses']);
+      $pdf->writeHTMLCell(103, 9, 30, 45, '<span>'.$req['owner_addresses'].'</span>', 0, 0, 0, true, 'J', true);
+      $pdf->writeHTMLCell(103, 9, 30, 66, '<span>'.$req['admin_addresses'].'</span>', 0, 0, 0, true, 'J', true);
+      $pdf->SetFont('helvetica', '', 10);
 			$pdf->writeHTMLCell(43, 2, 49, 80, '<span>'.$req['street_no'].'</span>', 0, 0, 0, true, 'C', true);
 			$pdf->writeHTMLCell(50, 2, 95, 80, '<span>'.$req['brgy_district'].'</span>', 1, 0, 0, true, 'C', true);
 			$pdf->Text(48, 96, $req['oct_tct_no']);
