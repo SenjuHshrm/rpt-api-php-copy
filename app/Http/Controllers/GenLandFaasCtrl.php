@@ -57,10 +57,10 @@ class GenLandFaasCtrl extends Controller
 					$pdf->Text(130, 135, $req['barangay_district']);
 					$pdf->Text(34, 144, $req['municipality']);
 					$pdf->Text(131, 144, $req['province_city']);
-					$pdf->Text(25, 161, $req['north']);
-					$pdf->Text(25, 167, $req['east']);
-					$pdf->Text(25, 173, $req['south']);
-					$pdf->Text(25, 180, $req['west']);
+					$pdf->writeHTMLCell(83, 6, 25, 159.5, '<span>'.$req['north'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(83, 6, 25, 166, '<span>'.$req['east'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(83, 6, 25, 172.8, '<span>'.$req['south'].'</span>', 0, 0, 0, true, 'C', true);
+					$pdf->writeHTMLCell(83, 6, 25, 180, '<span>'.$req['west'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 13, 201.5, '<span>'.$req['class'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 51, 201.5, '<span>'.$req['sub_class'].'</span>', 0, 0, 0, true, 'C', true);
 					$pdf->writeHTMLCell(37.9, 2, 89, 201.5, '<span>'.$req['area'].' sqm</span>', 0, 0, 0, true, 'C', true);
