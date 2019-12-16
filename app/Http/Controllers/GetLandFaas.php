@@ -28,11 +28,13 @@ class GetLandFaas extends Controller
     }
 
     private function getEncoder($id) {
-        $q = DB::select("CALL get_user_credentials(".$id.")");
-        if($q[0]->middle_name == '') {
-            $res = $q[0]->first_name . ' ' .$q[0]->last_name;
-        } else {
-            $res = $q[0]->first_name . ' ' . substr($q[0]->middle_name, 0, 1) . '. ' .$q[0]->last_name;
+        $q = DB::select("CALL get_user_credentials_web(".$id.")");
+        if(count($q) != 0) {
+          if($q[0]->middle_name == '') {
+              $res = $q[0]->first_name . ' ' .$q[0]->last_name;
+          } else {
+              $res = $q[0]->first_name . ' ' . substr($q[0]->middle_name, 0, 1) . '. ' .$q[0]->last_name;
+          }
         }
         return $res;
     }
