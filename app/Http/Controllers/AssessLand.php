@@ -37,20 +37,19 @@ class AssessLand extends Controller
 							"'".$obj['propLoc']['streetNo']."', '".$obj['propLoc']['brgy']."', '".$obj['propLoc']['subd']."', '".$obj['propLoc']['city']."',".
 							"'".$obj['propLoc']['province']."',".
 							"'".$obj['propLoc']['north']."', '".$obj['propLoc']['south']."', '".$obj['propLoc']['west']."', '".$obj['propLoc']['east']."',".
-							"'".$obj['landAppraisal']['class']."', '".$obj['landAppraisal']['subCls']."', '".$obj['landAppraisal']['interiorLot']."', '".$obj['landAppraisal']['cornerLot']."',".
-							"'".$obj['landAppraisal']['area']."', '".$obj['landAppraisal']['unitVal']."', '".$obj['landAppraisal']['baseMarketVal']."',".
-							"'".$obj['landAppraisal']['baseMarketVal']."',".
-							"'".$obj['landAppraisal']['stripping']."',".
-							"'".$obj['propAsmt']['actualUse']."', '".$obj['propAsmt']['marketVal']."', '".$obj['propAsmt']['assessmentLvl']."',".
-							"'".$obj['propAsmt']['assessedVal']."', '".$obj['propAsmt']['specialClass']."', '".$obj['propAsmt']['total']."',".
+							"'".$obj['landAppraisal']['class']."', '".$obj['landAppraisal']['subCls']."', ".$obj['landAppraisal']['interiorLot'].", ".$obj['landAppraisal']['cornerLot'].",".
+							"".$obj['landAppraisal']['area'].", ".$obj['landAppraisal']['unitVal'].", ".$obj['landAppraisal']['baseMarketVal'].",".
+							"".$obj['landAppraisal']['baseMarketVal'].",".$obj['landAppraisal']['stripping'].",".
+							"'".$obj['propAsmt']['actualUse']."', ".$obj['propAsmt']['marketVal'].", ".$obj['propAsmt']['assessmentLvl'].",".
+							"".$obj['propAsmt']['assessedVal'].", ".$obj['propAsmt']['specialClass'].", ".$obj['propAsmt']['total'].",".
 							"'".$obj['propAsmt']['status']."',".
-							"'".$obj['propAsmt']['effty']."', '".$obj['propAsmt']['efftQ']."',".
+							"".$obj['propAsmt']['effty'].", '".$obj['propAsmt']['efftQ']."',".
 							"'".$obj['propAsmt']['appraisedName']."', '".$obj['propAsmt']['appraisedDate']."',".
 							"'".$obj['propAsmt']['recommendName']."', '".$obj['propAsmt']['recommendDate']."',".
 							"'".$obj['propAsmt']['approvedName']."', '".$obj['propAsmt']['approvedDate']."',".
 							"'".$obj['propAsmt']['memoranda']."',".
 							"'".$obj['supersededRec']['supPin']."', '".$obj['supersededRec']['supArpNo']."',".
-							"'".$obj['supersededRec']['supTotalAssessedVal']."', '".$obj['supersededRec']['supPrevOwner']."',".
+							"".$obj['supersededRec']['supTotalAssessedVal'].", '".$obj['supersededRec']['supPrevOwner']."',".
 							"'".$obj['supersededRec']['supEff']."', '".$obj['supersededRec']['supARPageNo']."',".
 							"'".$obj['supersededRec']['supRecPersonnel']."', '".$obj['supersededRec']['supTDNo']."',".
 							"'".$obj['supersededRec']['supDate']."',".
@@ -109,7 +108,7 @@ class AssessLand extends Controller
 
 
 		private function getEncoderId($username) {
-			$q = DB::select("CALL login('".$username."')");
+			$q = DB::select("CALL login_web('".$username."')");
 			return $q[0]->user_id;
 		}
 }
