@@ -26,7 +26,8 @@ Route::group(['middleware' => ['cors']], function() {
     Route::post('/login', 'LoginCtrl@login');
     Route::post('/register', 'RegisterCtrl@register');
     Route::post('/get-file/land-tax', 'GetClearance@getFile');
-		Route::post('/check-pin-land', 'CheckPINLand@check');
+		Route::post('/check-pin-land', 'CheckPIN@checkLand');
+    Route::post('/check-pin-bldg', 'CheckPIN@checkBldg');
 		Route::post('/set-ref-num', 'SetRefNum@set');
 		Route::post('/gen-taxdec-land', 'GetTaxDecLand@getFile');
     Route::post('/gen-taxdec-bldg', 'GetTaxDecBldg@getFile');
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['cors']], function() {
 		Route::get('/get-bldg-struct-mat', 'GetBldgStructMat@getLs');
 		Route::get('/get-bldg-heights', 'GetBldgStHeight@get');
     Route::get('/get-bldg-incr', 'GetBldgAddItems@getItems');
+    Route::get('/get-bldg-vals', 'GetAllBldgDefVal@getVals');
 		// PUT requests
 		Route::put('/land-asmt/add', 'AssessLand@addLand');
 		Route::put('/land-asmt/update', 'AssessLand@updateLand');
