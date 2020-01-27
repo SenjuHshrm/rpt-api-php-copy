@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  View::addExtension('html', 'php');
+  return View::make('index');
 });
 
-Route::get('/samplepdf', 'LandFaasGenFile@genfile');
+Route::any('{any}', function() {
+  View::addExtension('html', 'php');
+  return View::make('index');
+})->where('any', '.*');
